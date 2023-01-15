@@ -26,8 +26,8 @@ const students = [{
 
 // 1. Повертає список предметів для конкретного студента.
 
-function getSubjects(students) {
-    let arrSubjects = Object.keys(students.subjects).map(subject =>
+function getSubjects(student) {
+    let arrSubjects = Object.keys(student.subjects).map(subject =>
         (subject.charAt(0).toUpperCase() + subject.slice(1)).split('_').join(' '));
     return arrSubjects
 }
@@ -35,8 +35,8 @@ console.log('1. getSubjects - ', getSubjects(students[0]));
 
 // 2. Повертає середню оцінку по усім предметам для переданого студента НЕ МАСИВА СТУДЕНТІВ.
 
-function getAverageMark(students) {
-    let arrSubjects = Object.values(students.subjects).flat();
+function getAverageMark(student) {
+    let arrSubjects = Object.values(student.subjects).flat();
     let sumGrade = arrSubjects.reduce((previousValue, currentValue) => previousValue + currentValue);
     return (sumGrade / arrSubjects.length).toFixed(2)
 }
@@ -44,8 +44,8 @@ console.log('2. getAverageMark - ', getAverageMark(students[0]));
 
 // 3. Повертає інформацію загального виду по переданому студенту (вам знадобиться функція з попереднього завдання). ПОвинна бути виведена інформація: курс, ім'я, середня оцінка.
 
-function getStudentInfo(students) {
-    return {"course": students.course, "name": students.name, "averageMark": getAverageMark(students)};
+function getStudentInfo(student) {
+    return {"course": student.course, "name": student.name, "averageMark": getAverageMark(student)};
 }
 console.log('3. getStudentInfo - ', getStudentInfo(students[0]));
 
@@ -59,10 +59,10 @@ console.log('4. getStudentsNames - ', getStudentsNames(students));
 
 // 5. Повертає кращого студента зі списку по показнику середньої оцінки.
 
-function getBestStudent(students) {
+function getBestStudent(student) {
     let bestGrade = 0;
     let bestStudent;
-    students.forEach(element => {
+    student.forEach(element => {
         let averageMark = getAverageMark(element);
         if (averageMark > bestGrade) {
             bestGrade = averageMark;
